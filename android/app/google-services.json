@@ -1,0 +1,172 @@
+{
+  "project_info": {
+    "project_number": "968742616363",
+    "firebase_url": "https://iter-44dad.firebaseio.com",
+    "project_id": "iter-44dad",
+    "storage_bucket": "iter-44dad.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:968742616363:android:da5bf305a1c8ce2199d96e",
+        "android_client_info": {
+          "package_name": "com.example.flutter_auth"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "968742616363-tnngnp7aqdu7e55iqskc34h55082qn2p.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD6EWwgu7kPPMmzixfi55_1Sd8HM4ayM1o"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "968742616363-tnngnp7aqdu7e55iqskc34h55082qn2p.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:968742616363:android:a39569a460308ee999d96e",
+        "android_client_info": {
+          "package_name": "com.example.iter_tour_guide"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "968742616363-tnngnp7aqdu7e55iqskc34h55082qn2p.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD6EWwgu7kPPMmzixfi55_1Sd8HM4ayM1o"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "968742616363-tnngnp7aqdu7e55iqskc34h55082qn2p.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:968742616363:android:63bcf4f330626ff399d96e",
+        "android_client_info": {
+          "package_name": "com.example.iter_tourist"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "968742616363-tnngnp7aqdu7e55iqskc34h55082qn2p.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD6EWwgu7kPPMmzixfi55_1Sd8HM4ayM1o"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "968742616363-tnngnp7aqdu7e55iqskc34h55082qn2p.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:968742616363:android:4ca097bc7f92f3ab99d96e",
+        "android_client_info": {
+          "package_name": "com.ucsc.iter_tourist_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "968742616363-jqpgoe90cpckeqf3v7relk5g2p6sa4jq.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.ucsc.iter_tourist_app",
+            "certificate_hash": "c673cd2911bc36a438d4a733c82fe44358084d44"
+          }
+        },
+        {
+          "client_id": "968742616363-tnngnp7aqdu7e55iqskc34h55082qn2p.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD6EWwgu7kPPMmzixfi55_1Sd8HM4ayM1o"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "968742616363-tnngnp7aqdu7e55iqskc34h55082qn2p.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:968742616363:android:20f2ba19373cadc499d96e",
+        "android_client_info": {
+          "package_name": "ucsc.iter_tourist"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "968742616363-ndhhbs4aun5kmv7ug2a84g539k53fuoc.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "ucsc.iter_tourist",
+            "certificate_hash": "0d107377de4936c56a45c42ac53d307e40b105a6"
+          }
+        },
+        {
+          "client_id": "968742616363-tnngnp7aqdu7e55iqskc34h55082qn2p.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD6EWwgu7kPPMmzixfi55_1Sd8HM4ayM1o"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "968742616363-tnngnp7aqdu7e55iqskc34h55082qn2p.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
