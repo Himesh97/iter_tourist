@@ -1,4 +1,4 @@
-name: iter_tourist
+name: iter_tourist_app
 description: A new Flutter application.
 
 # The following line prevents the package from being accidentally published to
@@ -34,7 +34,6 @@ dependencies:
   oktoast: ^2.3.2
   transparent_image: ^1.0.0
   barcode_scan: ^3.0.1
-
 
 dev_dependencies:
   flutter_test:

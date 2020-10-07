@@ -1,8 +1,8 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:iter_tourist/core/data/my_colors.dart';
-import 'package:iter_tourist/core/services/validator.dart';
+import 'package:iter_tourist_app/core/data/my_colors.dart';
+import 'package:iter_tourist_app/core/services/validator.dart';
 import 'package:oktoast/oktoast.dart';
 
 class Login extends StatefulWidget {
@@ -57,7 +57,7 @@ class _LoginState extends State<Login> {
     return Column(
       children: [
         Expanded(
-          flex: 4,
+          flex: 2,
           child: Container(
             color: Theme.of(context).primaryColor,
             width: MediaQuery.of(context).size.width,
@@ -71,7 +71,7 @@ class _LoginState extends State<Login> {
                     "iTer",
                     style: TextStyle(
                         color: Colors.white,
-                        fontSize: 72,
+                        fontSize: 65,
                         fontWeight: FontWeight.bold),
                   ),
                   SizedBox(
@@ -90,7 +90,7 @@ class _LoginState extends State<Login> {
           ),
         ),
         Expanded(
-          flex: 6,
+          flex: 5,
           child: Padding(
             padding: const EdgeInsets.all(12),
             child: IgnorePointer(

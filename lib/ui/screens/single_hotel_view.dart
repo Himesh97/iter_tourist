@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:iter_tourist/core/models/hotel_model.dart';
+import 'package:iter_tourist_app/core/models/hotel_model.dart';
 import 'package:transparent_image/transparent_image.dart';
 
 class SingleHotelView extends StatefulWidget {
@@ -35,13 +35,19 @@ class _SingleHotelViewState extends State<SingleHotelView> {
                       fit: BoxFit.fill,
                       height: MediaQuery.of(context).size.height * 0.28,
                       image:
-                          "https://cdn.pixabay.com/photo/2018/07/16/16/08/island-3542290_960_720.jpg"),
+                          widget.hotel.imageUrl),
                   Positioned(
                     bottom: 10,
                     right: 10,
                     child: RaisedButton(
                       child: Text("Book Now"),
-                      onPressed: () {},
+                      onPressed: () {
+                        showDialog(context: context, builder: (context){
+                          return AlertDialog(
+                            title: Center(child: CircularProgressIndicator()),
+                          );
+                        });
+                      },
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(8)),
                       color: Theme.of(context).primaryColor,
@@ -64,13 +70,6 @@ class _SingleHotelViewState extends State<SingleHotelView> {
                       fontSize: 25,
                       fontWeight: FontWeight.bold,
                       color: Colors.black87),
-                ),
-                subtitle: Text(
-                  widget.hotel.address,
-                  style: TextStyle(
-                      fontSize: 18,
-                      fontWeight: FontWeight.normal,
-                      color: Colors.black54),
                 ),
               ),
               ListTile(
@@ -116,6 +115,9 @@ class _SingleHotelViewState extends State<SingleHotelView> {
                     size: 40,
                   ),
                 ],
+              ),
+              SizedBox(
+                height: 20,
               ),
             ]),
           ),

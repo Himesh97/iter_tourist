@@ -1,6 +1,7 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:iter_tourist/core/models/hotel_model.dart';
-import 'package:iter_tourist/ui/screens/single_hotel_view.dart';
+import 'package:iter_tourist_app/core/models/hotel_model.dart';
+import 'package:iter_tourist_app/ui/screens/single_hotel_view.dart';
 import 'package:transparent_image/transparent_image.dart';
 
 class HotelsView extends StatefulWidget {
@@ -9,13 +10,9 @@ class HotelsView extends StatefulWidget {
 }
 
 class _HotelsViewState extends State<HotelsView> {
-  final Hotel hotel1 = new Hotel(
-      name: "Galley mariya",
-      address: "Kottawa, new york, Slt",
-      description:
-          "Description: We thoroughly enjoyed our weekend stay at Waybourne. Our host and hostess couldn’t do enough for us. They treated us just like friends. The accommodation was fabulous, lovely spacious rooms and fabulous breakfasts. The staff was really helpful and friendly, the room was very clean and it comes with lovely view from the balcony. The room was clean, and the view from the balcony, and even from the bed was fantastic.",
-      price: 650,
-      rating: 4);
+
+  final _db = FirebaseFirestore.instance;
+  Future _getHotelList;
 
   @override
   Widget build(BuildContext context) {
@@ -24,15 +21,24 @@ class _HotelsViewState extends State<HotelsView> {
       appBar: AppBar(
         title: Text("Hotels"),
       ),
-      body: ListView(
-        physics: BouncingScrollPhysics(),
-        children: [
-          _listItem(hotel1),
-          _listItem(hotel1),
-          _listItem(hotel1),
-          _listItem(hotel1),
-          _listItem(hotel1),
-        ],
+      body: FutureBuilder<QuerySnapshot>(
+        future: _getHotelList,
+        builder: (context, snapshot) {
+          if (snapshot.connectionState == ConnectionState.done){
+            if (snapshot.hasData && !snapshot.hasError){
+              if (snapshot.data.size == 0){
+                return Center(child: Text("No Data"),);
+              }
+              final hotelList = snapshot.data.docs.map((e) => Hotel.fromDocument(e)).toList();
+              return ListView(
+                physics: BouncingScrollPhysics(),
+                children: hotelList.map((e) => _listItem(e)).toList(),
+              );
+            }
+            return Center(child: Text("Something went wrong. Please try again later"),);
+          }
+          return Center(child: CircularProgressIndicator(),);
+        }
       ),
     );
   }
@@ -49,8 +55,8 @@ class _HotelsViewState extends State<HotelsView> {
                 context,
                 MaterialPageRoute(
                     builder: (context) => SingleHotelView(
-                          hotel: hotel,
-                        ))),
+                      hotel: hotel,
+                    ))),
             child: Row(
               children: [
                 Expanded(
@@ -60,7 +66,7 @@ class _HotelsViewState extends State<HotelsView> {
                       fit: BoxFit.fill,
                       height: 100,
                       image:
-                          "https://cdn.pixabay.com/photo/2018/07/16/16/08/island-3542290_960_720.jpg"),
+                      hotel.imageUrl),
                 ),
                 SizedBox(
                   width: 10,
@@ -79,15 +85,8 @@ class _HotelsViewState extends State<HotelsView> {
                               fontWeight: FontWeight.bold,
                               color: Colors.black87),
                         ),
-                        Text(
-                          hotel.address,
-                          style: TextStyle(
-                              fontSize: 15,
-                              fontWeight: FontWeight.normal,
-                              color: Colors.black54),
-                        ),
                         _starRating(hotel.rating),
-                        Text("\$${hotel.price} for 1 night",
+                        Text("\$${hotel.price} per night",
                             style: TextStyle(
                                 fontSize: 15,
                                 fontWeight: FontWeight.normal,
@@ -105,6 +104,7 @@ class _HotelsViewState extends State<HotelsView> {
   }
 
   Widget _starRating(int value) {
+    if (value == null) value = 0;
     return Row(
       crossAxisAlignment: CrossAxisAlignment.center,
       mainAxisAlignment: MainAxisAlignment.start,
@@ -136,5 +136,11 @@ class _HotelsViewState extends State<HotelsView> {
         ),
       ],
     );
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    _getHotelList = _db.collection("hotels").get();
   }
 }

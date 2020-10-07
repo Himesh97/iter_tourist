@@ -3,10 +3,14 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:iter_tourist/core/models/tourist_model.dart';
-import 'package:iter_tourist/ui/screens/hotels_view.dart';
-import 'package:iter_tourist/ui/shared_widgets/busy_loader.dart';
-import 'package:iter_tourist/ui/shared_widgets/error_load.dart';
+import 'package:iter_tourist_app/core/models/tourist_model.dart';
+import 'package:iter_tourist_app/ui/screens/activities.dart';
+import 'package:iter_tourist_app/ui/screens/foods.dart';
+import 'package:iter_tourist_app/ui/screens/hotels_view.dart';
+import 'package:iter_tourist_app/ui/screens/profile.dart';
+import 'package:iter_tourist_app/ui/screens/tours.dart';
+import 'package:iter_tourist_app/ui/shared_widgets/busy_loader.dart';
+import 'package:iter_tourist_app/ui/shared_widgets/error_load.dart';
 import 'package:oktoast/oktoast.dart';
 import 'package:transparent_image/transparent_image.dart';
 
@@ -53,12 +57,18 @@ class _HomeState extends State<Home> {
                         mainAxisAlignment: MainAxisAlignment.start,
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
-                          ClipOval(
-                            child: FadeInImage.memoryNetwork(
-                                placeholder: kTransparentImage,
-                                width: 50,
-                                height: 50,
-                                image: tourist.photoUrl),
+                          GestureDetector(
+                            child: ClipOval(
+                              child: FadeInImage.memoryNetwork(
+                                  placeholder: kTransparentImage,
+                                  width: 50,
+                                  height: 50,
+                                  image: tourist.photoUrl),
+                            ),
+                            onTap: () => Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => ProfileView())),
                           ),
                           SizedBox(
                             width: 15,
@@ -70,9 +80,30 @@ class _HomeState extends State<Home> {
                                   fontWeight: FontWeight.w500)),
                           Spacer(),
                           IconButton(
-                            icon: Icon(Icons.menu),
+                            icon: Icon(Icons.power_settings_new),
                             onPressed: () {
-                              _firebaseAuth.signOut();
+                              showDialog(
+                                  context: context,
+                                  builder: (context) {
+                                    return AlertDialog(
+                                      title: Text(
+                                          "Are you sure want to sign out?"),
+                                      actions: [
+                                        FlatButton(
+                                          onPressed: () async {
+                                            await _firebaseAuth.signOut();
+                                            Navigator.pop(context);
+                                          },
+                                          child: Text("YES"),
+                                        ),
+                                        FlatButton(
+                                          onPressed: () =>
+                                              Navigator.pop(context),
+                                          child: Text("NO"),
+                                        ),
+                                      ],
+                                    );
+                                  });
                             },
                           ),
                         ],
@@ -115,12 +146,13 @@ class _HomeState extends State<Home> {
                               bottom: 70,
                               child: RaisedButton(
                                 onPressed: () async {
-                                  ScanResult result = await BarcodeScanner.scan();
+                                  ScanResult result =
+                                      await BarcodeScanner.scan();
                                   if (result.type == ResultType.Barcode) {
                                     final String rawContent = result.rawContent;
                                     showToast(rawContent);
-                                  }
-                                  else showToast("Error, Try again later");
+                                  } else
+                                    showToast("Error, Try again later");
                                 },
                                 shape: RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(45)),
@@ -155,7 +187,7 @@ class _HomeState extends State<Home> {
                       scrollDirection: Axis.horizontal,
                       children: [
                         _listItem(
-                            Icons.collections_bookmark,
+                            Icons.hotel,
                             "Hotels",
                             Colors.pink.withOpacity(0.35),
                             Colors.pink,
@@ -164,23 +196,32 @@ class _HomeState extends State<Home> {
                                 MaterialPageRoute(
                                     builder: (context) => HotelsView()))),
                         _listItem(
-                            Icons.collections_bookmark,
+                            Icons.food_bank,
                             "Food & Drinks",
                             Colors.purple.withOpacity(0.35),
                             Colors.purple,
                             () => Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (context) => HotelsView()))),
+                                    builder: (context) => FoodsView()))),
                         _listItem(
-                            Icons.collections_bookmark,
+                            Icons.local_activity,
                             "Activities",
                             Colors.green.withOpacity(0.35),
                             Colors.green,
                             () => Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (context) => HotelsView()))),
+                                    builder: (context) => ActivitiesView()))),
+                        _listItem(
+                            Icons.collections_bookmark,
+                            "Tour Guide",
+                            Colors.blue.withOpacity(0.35),
+                            Colors.blue,
+                            () => Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => ToursView()))),
                       ],
                     ),
                   ),

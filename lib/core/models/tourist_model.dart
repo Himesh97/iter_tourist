@@ -33,12 +33,12 @@ class Tourist {
   factory Tourist.fromDocument(DocumentSnapshot document) {
     return new Tourist(
       firebaseUserId: document.id,
-      fullName: document.data()['fullName'],
-      accommodation: document.data()['accommodation'],
-      arrivalDate: (document.data()['arrivalDate'] as Timestamp).toDate(),
-      nativeLanguage: document.data()['nativeLanguage'],
-      photoUrl: document.data()['photoUrl'],
-      mobileNumber: document.data()['mobileNumber'],
+      fullName: document.data()['fullName'] ?? "",
+      accommodation: document.data()['accommodation'] ?? "",
+      arrivalDate: (document.data()['arrivalDate'] as Timestamp)?.toDate() ?? DateTime.now(),
+      nativeLanguage: document.data()['nativeLanguage'] ?? "",
+      photoUrl: document.data()['photoUrl'] ?? "",
+      mobileNumber: document.data()['mobileNumber'] ?? "",
     );
   }
 }
